@@ -1,4 +1,4 @@
-**Paladin Lay on Hands **  
+** Paladin Lay on Hands **  
 *By Croebh#5603*  
 
 *Update by minifig#1345*
