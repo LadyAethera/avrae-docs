@@ -1,17 +1,21 @@
-** Paladin Lay on Hands **  
-*By Croebh#5603*  
+# Paladin Lay on Hands
+*By Croebh#5603*
 
 *Update by minifig#1345*
   
-An alias to use the Lay on Hands Paladin class feature. Please set up the CC as per the command, the first one is for Dicecloud, the second for PDFsheet or Gsheet.   
+An alias to use the Lay on Hands Paladin class feature.
+
+### Setup
+Please set up the CC as per the command, the first one is for Dicecloud, the second for PDFsheet or Gsheet.
+
+`!cc create "Lay on Hands" -reset long -max {{5*PaladinLevel}} -min 0`  
+`!cc create "Lay on Hands" -reset long -max {{5*level}} -min 0`  
   
+### Code
 To use the lay on hand feature, the command structure is:  
   
 `!lay [#|disease|poison]`  
-eg. `!lay 8` or `!lay disease`  
-  
-`!cc create "Lay on Hands" -reset long -max {{5*PaladinLevel}} -min 0`  
-`!cc create "Lay on Hands" -reset long -max {{5*level}} -min 0`  
+eg. `!lay 8` or `!lay disease`
   
 ```GN
 !alias lay embed
