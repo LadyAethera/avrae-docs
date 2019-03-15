@@ -1,5 +1,5 @@
 # Wand of Magic Missiles
-*By LadyAethera.*
+*by Aethera#2228*
 
 Usage: `!wandmm`
     `!wandmm [cast-at level]`
