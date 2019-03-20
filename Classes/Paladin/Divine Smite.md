@@ -1,15 +1,22 @@
-**Divine Smite**  
-*By Paranoid#8322.*  
-Outputs smite in a way that matches the !spell output more closely.  
-Usage: `!smite <slot lvl>` or `!critsmite <slot lvl>`  
-```  
-!alias smite multiline  
-!embed -title "<name> channels a level %1% Divine Smite!" -desc "**Add. Damage**: 1d8 + %1%d8 ({{set("a", roll("1d8"))}}{{set("b", roll("1d8"))}}{{set("c", roll("1d8"))}}{{set("d", roll("1d8"))}}{{set("e", roll("1d8"))}}{{set("f", roll("1d8"))}}{{"**"+str(a)+"**" if a==8 or a==1 else a}},{{"**"+str(b)+"**" if b==8 or b==1 else b}}{{(",**"+str(c)+"**" if c==8 or c==1 else ","+str(c)) if %1% > 1 else ""}}{{(",**"+str(d)+"**" if d==8 or d==1 else ","+str(d)) if %1% > 2 else ""}}{{(",**"+str(e)+"**" if e==8 or e==1 else ","+str(e)) if %1% > 3 else ""}}{{(",**"+str(f)+"**" if f==8 or f==1 else ","+str(f)) if %1% > 4 else ""}}) [radiant] = {{a+b if %1%==1 else a+b+c if %1%==2 else a+b+c+d if %1%==3 else a+b+c+d+e if %1%==4 else a+b+c+d+e+f}}"  
-!g ss %1% -1
-```  
+# Divine Smite
+*by Aethera#2228*
 
-```GN
-!alias critsmite multiline   
-!embed -title "<name> channels a critical level %1% Divine Smite!" -desc "**Add. Damage**: 2d8 + {%1%*2}d8 ({{set("a", roll("1d8"))}}{{set("A", roll("1d8"))}}{{set("b", roll("1d8"))}}{{set("B", roll("1d8"))}}{{set("c", roll("1d8"))}}{{set("C", roll("1d8"))}}{{set("d", roll("1d8"))}}{{set("D", roll("1d8"))}}{{set("e", roll("1d8"))}}{{set("E", roll("1d8"))}}{{set("f", roll("1d8"))}}{{set("F", roll("1d8"))}}{{"**"+str(a)+"**" if a==8 or a==1 else a}},{{"**"+str(A)+"**" if A==8 or A==1 else A}},{{"**"+str(b)+"**" if b==8 or b==1 else b}},{{"**"+str(B)+"**" if B==8 or B==1 else B}}{{(",**"+str(c)+"**" if c==8 or c==1 else ","+str(c)) if %1% > 1 else ""}}{{(",**"+str(C)+"**" if C==8 or C==1 else ","+str(C)) if %1% > 1 else ""}}{{(",**"+str(d)+"**" if d==8 or d==1 else ","+str(d)) if %1% > 2 else ""}}{{(",**"+str(D)+"**" if D==8 or D==1 else ","+str(D)) if %1% > 2 else ""}}{{(",**"+str(e)+"**" if e==8 or e==1 else ","+str(e)) if %1% > 3 else ""}}{{(",**"+str(E)+"**" if E==8 or E==1 else ","+str(E)) if %1% > 3 else ""}}{{(",**"+str(f)+"**" if f==8 or f==1 else ","+str(f)) if %1% > 4 else ""}}{{(",**"+str(F)+"**" if F==8 or F==1 else ","+str(F)) if %1% > 4 else ""}}) [radiant] = {{a+A+b+B if %1%==1 else a+A+b+B+c+C if %1%==2 else a+A+b+B+c+C+d+D if %1%==3 else a+A+b+B+c+C+d+D+e+E if %1%==4 else a+A+b+B+c+C+d+D+e+E+f+F}}"  
-!g ss %1% -1  
+Outputs smite in a way that matches the !spell output more closely. Checks to make sure you have a spell slot to spend, expends it, and shows you your remaining spell slots. Options include critical hits and undead targets.
+
+Usage:        `!smite [args]`
+Arguments: `-l <slot lvl>`
+                  `-crit`
+                  `-undead`
+
+### Code
+```  
+!alias smite embed
+{{lvl = 1 if "%*%"=="" else int("%2%") if ("%1%"=="-l" and "%2%".isdigit() and int("%2%")>0 and int("%2%")<=9) else int("%3%") if ("%2%"=="-l" and "%3%".isdigit() and int("%3%")>0 and int("%3%")<=9) else int("%4%") if ("%3%"=="-l" and "%4%".isdigit() and int("%4%")>0 and int("%4%")<=9) else 1}}
+{{u = 1 if ("%*%"!="" and ("%1%"=="-undead" or "%2%"=="-undead" or "%3%"=="-undead" or "%4%"=="-undead")) else 0}}
+{{cr = 1 if ("%*%"!="" and ("%1%"=="-crit" or "%2%"=="-crit" or "%3%"=="-crit" or "%4%"=="-crit")) else 0}}
+{{good = 1 if (get_slots(lvl)>0 and lvl<=9) else 0}}
+-title "<name> {{"channels a "+("**critical** " if cr else "")+"level "+str(lvl)+" Divine Smite"+(" against undead" if u==1 else "")+"!" if good else "can't muster the divine power to smite."}}"
+-desc "{{use_slot(lvl)}}**Damage:** {{set("d",vroll(str(1+lvl+u)+"d8",1,(1+lvl+u if cr else 0)))}} {{d.dice}} [radiant] = `{{d.total}}`"
+-f "{{slots_str(lvl)}}"
+-footer "Paladin: Divine Smite | PHB 85" -color <color> -thumb <image>
 ```
