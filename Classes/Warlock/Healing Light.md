@@ -1,13 +1,15 @@
-**Healing Light**  
-*By ChaoticUnreal#4387*  
+# Healing Light  
+*by ChaoticUnreal#4387*  
   
-Subtracts from Healing Light counter. Rolls healing for Healing Light.  
+*updated by LittleBlueNA#0570*
+
+Subtracts from Healing Light counter, creating counter if there is none. Rolls healing for Healing Light and displays remaining dice pool.
   
-```py  
+```GN
 !alias hl embed  
 {{set("counter", "Healing Light")}}  
 {{set("heal",1 if "%1%" == "%1"+"%" or (("%1%").isdigit() == False) else int("%1%"))}}  
-{{create_cc_nx(counter, 0, 1 + (WarlockLevel if exists(WarlockLevel) else level), "long", "default")}}  
+{{create_cc_nx(counter, 0, 1 + level, "long", "default")}}  
 {{set("cast", 1 if get_cc(counter)>=int(heal) else "")}}  
 {{mod_cc(counter,-int(heal),"True") if cast else ""}}  
 {{set("healdice",vroll(str(heal)+"d6"))}}  
@@ -17,5 +19,5 @@ As a bonus action, you can heal one creature you can see within 60 feet of you, 
 Your pool regains all expended dice when you finish a long rest."  
 {{"-f \"Healing|**Healing: **"+str(healdice)+"\"" if cast else "-f \"**Not enough dice**\""}}  
 -f "{{counter}}|{{get_cc(counter)}}/{{get_cc_max(counter)}}"  
--color <color> -thumb <image>  
+-color <color> -thumb <image>
 ```
