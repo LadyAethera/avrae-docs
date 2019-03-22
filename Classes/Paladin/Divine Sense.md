@@ -1,7 +1,7 @@
 # Divine Sense
 *updated by Aethera#2228*
 
-Spits out Divine Sense text, subtracts from Divine Sense counter, creating counter if none exists. Will display failure if counter is zero. Displays remaining dice pool.
+Spits out Divine Sense text, subtracts from Divine Sense counter, creating counter if none exists. Will display failure if counter is zero. Displays remaining uses.
 
 Usage: `!divinesense`
 
