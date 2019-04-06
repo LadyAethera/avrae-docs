@@ -1,9 +1,9 @@
 # Hex (non SRD Warlock)
 *by Aethera#2228*
 
-Spits out Hex text, subtracts a spell from your spell slots. Will display failure if counter is zero. Displays remaining spell slots. Doesn't check Hex is on your spell list.
+Spits out Hex text, subtracts a spell from your spell slots. Will display failure if counter is zero. Displays remaining spell slots. Doesn't check Hex is on your spell list. If you don't want to have to type the level each time, replace the first line of code with {{level = #}} and save the alias again.
 
-Usage: `!hex`
+Usage: `!hex -l #`
 
 ### Code
 ```  
