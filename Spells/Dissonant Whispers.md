@@ -8,7 +8,7 @@ Usage: `!whispers -l #`
 ### Code
 ```  
 !alias whispers embed
-{{level = int("%2%") if ("%*%" != "" and "%1%"=="-l" and "%2%".isdigit() and int("%2%")>0 and int("%2%")<=9) else 1}}
+{{level = int("%2%") if (%*% != "" and "%1%"=="-l" and "%2%".isdigit() and int("%2%")>0 and int("%2%")<=9) else 1}}
 {{slots = get_slots(level)}}
 -title "<name> casts Dissonant Whispers!"
 -desc "Effect
