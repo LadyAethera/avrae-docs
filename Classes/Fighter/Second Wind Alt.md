@@ -1,8 +1,3 @@
-Second Wind: regain vroll("d10+"+level) HP
-Combat Superiority check/update PHB 73
-Maneuvers PHB 74
-
-
 # Second Wind (Fighter)
 *by Aethera#2228*
 
