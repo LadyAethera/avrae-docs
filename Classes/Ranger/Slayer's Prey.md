@@ -1,4 +1,4 @@
-# Slayer's Prey
+# Slayer's Prey (Monster Hunter)
 *By Aethera#2228.*
 
 Spits out Slayer's Prey text for Monster Hunter rangers, creating counter if necessary, and will reject the command if it has been used already.
